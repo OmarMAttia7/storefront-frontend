@@ -1,11 +1,22 @@
-import './App.css'
+import { createContext, StrictMode } from "react";
+import { RouterProvider } from "react-router-dom";
+import "./App.css";
+import router from "./router";
+import LoginState from "./types/LoginState";
 
-function App() {
+const LoginStateContext: React.Context<LoginState> = createContext<LoginState>({
+  isLoggedIn: false,
+});
+
+function App(): JSX.Element {
   return (
-    <div>
-      <p>work in progress</p>
-    </div>
-  )
+    <StrictMode>
+      <LoginStateContext.Provider value={{ isLoggedIn: false }}>
+        <RouterProvider router={router} />
+      </LoginStateContext.Provider>
+    </StrictMode>
+  );
 }
 
-export default App
+export default App;
+export { LoginStateContext };

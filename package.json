@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -23,6 +24,7 @@
     "@vitejs/plugin-react": "^2.2.0",
     "@vitest/ui": "^0.25.3",
     "jsdom": "^20.0.3",
+    "msw": "^0.49.0",
     "typescript": "^4.6.4",
     "vite": "^3.2.3",
     "vitest": "^0.25.3"
