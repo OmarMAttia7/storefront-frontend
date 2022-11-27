@@ -1,4 +1,4 @@
-function AccountPrompt() {
+function AccountPrompt(): JSX.Element {
   return (
     <p>Account Prompt</p>
   )
