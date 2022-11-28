@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
+import { LoginStateContext } from "../App";
 import Form, { InputInfo } from "../components/Form";
 import "./index.css";
 import loginRequest from "./loginRequest";
@@ -10,6 +12,7 @@ const inputList: InputInfo[] = [
 ];
 
 function LoginPage(): JSX.Element {
+  const setLoginState = useContext(LoginStateContext)[1];
   const successComponent = (
     <>
       <h1>Successfully logged in!</h1>
@@ -28,6 +31,7 @@ function LoginPage(): JSX.Element {
           submitTitle="Login"
           formAction={loginRequest}
           onSuccessChildren={successComponent}
+          onSuccess={() => {setLoginState({isLogged: false, status: "loading"})}}
           onErrorMessage="This email and password don't match credentials in the system"
         />
         <p>Don't have an account? <Link to="/signup">Create an account</Link></p>

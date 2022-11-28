@@ -5,7 +5,7 @@ import AccountPrompt from "./AccountPrompt";
 import Landing from "./Landing";
 
 function HomePage(): JSX.Element {
-  const LoginState = useContext(LoginStateContext);
+  const LoginState = useContext(LoginStateContext)[0];
   return (
     <main>
       {LoginState.isLoggedIn ? <Landing /> : <AccountPrompt />}
