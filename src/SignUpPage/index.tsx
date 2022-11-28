@@ -29,7 +29,9 @@ function SignUpPage(): JSX.Element {
           submitTitle="Create Account"
           formAction={signupRequest}
           onSuccessChildren={successComponent}
+          onErrorMessage="This email already exists"
         />
+        <p>Already have an account? <Link to="/login">Login</Link>.</p>
       </div>
     </main>
   );

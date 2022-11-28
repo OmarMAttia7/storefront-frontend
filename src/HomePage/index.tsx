@@ -1,5 +1,5 @@
 import "./index.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { LoginStateContext } from "../App";
 import AccountPrompt from "./AccountPrompt";
 import Landing from "./Landing";

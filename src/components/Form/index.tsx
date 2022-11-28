@@ -10,7 +10,9 @@ function Form(props: {
   validatorList: Object;
   submitTitle: string;
   formAction: Function;
-  onSuccessChildren: JSX.Element
+  onSuccessChildren: JSX.Element;
+  onErrorMessage: string;
+  onSuccess?: Function;
 }): JSX.Element {
   const [validationState, setValidationState] = useState<Set<string>>(
     new Set()
@@ -47,8 +49,11 @@ function Form(props: {
       props.formAction(inputValues).then((response: Response) => {
         if(response.status === 200) {
           setSuccessState(true);
+          if(props.onSuccess !== undefined){
+            props.onSuccess();
+          }
         }else{
-          setErrorMessage("This email already exists");
+          setErrorMessage(props.onErrorMessage);
         }
       });
     } else {

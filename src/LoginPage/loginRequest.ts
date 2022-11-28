@@ -1,25 +1,26 @@
 import api from "../api";
 
 type UserInfo = {
-  firstName: string;
-  lastName: string;
   email: string;
   password: string;
 };
 
-export default async function signupRequest(userInfo: UserInfo): Promise<Response> {
-  const response = await fetch(`${api}/users`, {
+export default async function login(userInfo: UserInfo): Promise<Response> {
+  const response = await fetch(`${api}/users/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      first_name: userInfo.firstName,
-      last_name: userInfo.lastName,
       email: userInfo.email,
       password: userInfo.password
     }),
   });
+
+  if(response.status === 200){
+    const jwtToken = (await response.json()).token;
+    document.cookie = `usertoken=${jwtToken}`
+  }
 
   return response;
 }
