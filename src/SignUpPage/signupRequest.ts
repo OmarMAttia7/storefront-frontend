@@ -8,7 +8,7 @@ type UserInfo = {
   password: string;
 };
 
-export default async function signupRequest(userInfo: UserInfo): Promise<void> {
+export default async function signupRequest(userInfo: UserInfo): Promise<Response> {
   const response = await fetch(`${api}/users`, {
     method: "POST",
     headers: {
@@ -22,5 +22,5 @@ export default async function signupRequest(userInfo: UserInfo): Promise<void> {
     }),
   });
 
-  console.log(response);
+  return response;
 }
