@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.form > div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.form > div input {
+  border: 1px solid black;
+  padding: 5px 10px;
+}
+
+.form-submit {
+  cursor: pointer;
+  background-color: #006ac1;
+  border: 1px solid transparent;
+  color: #fff;
+  font-size: medium;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+.form-submit:hover {
+  filter: brightness(1.2);
+}
