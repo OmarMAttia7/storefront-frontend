@@ -9,7 +9,8 @@ function Form(props: {
   inputList: InputInfo[];
   validatorList: Object;
   submitTitle: string;
-  formAction: Function
+  formAction: Function;
+  onSuccessChildren: JSX.Element
 }): JSX.Element {
   const [validationState, setValidationState] = useState<Set<string>>(
     new Set()
@@ -22,6 +23,7 @@ function Form(props: {
     });
     return initialValues;
   });
+  const [successState, setSuccessState] = useState(false);
 
   function alterValidationState(
     type: "add" | "delete",
@@ -42,7 +44,13 @@ function Form(props: {
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     if (validationState.size === props.inputList.length) {
-      props.formAction(inputValues);
+      props.formAction(inputValues).then((response: Response) => {
+        if(response.status === 200) {
+          setSuccessState(true);
+        }else{
+          setErrorMessage("This email already exists");
+        }
+      });
     } else {
       setErrorMessage("Please fill out all required forms correctly.");
     }
@@ -64,7 +72,7 @@ function Form(props: {
     alterInputValues(inputName, value);
   }
 
-  return (
+  return !successState ? (
     <form className="form" onSubmit={handleSubmit}>
       {props.inputList.map((input) => {
         return (
@@ -78,8 +86,12 @@ function Form(props: {
         );
       })}
       <p>{errorMessage}</p>
-      <input className="form-submit" type="submit" value="Create Account" />
+      <input className="form-submit" type="submit" value={props.submitTitle} />
     </form>
+  ) : (
+    <div>
+      {props.onSuccessChildren}
+    </div>
   );
 }
 
