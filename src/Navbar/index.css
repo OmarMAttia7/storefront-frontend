@@ -1,0 +1,13 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 10vh;
+  padding: 2vh;
+  gap: 4vh;
+}
+
+nav a {
+  color: #000;
+  
+}
