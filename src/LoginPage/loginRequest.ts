@@ -1,3 +1,4 @@
+import { decode } from "js-base64";
 import api from "../api";
 
 type UserInfo = {
@@ -19,6 +20,7 @@ export default async function login(userInfo: UserInfo): Promise<Response> {
 
   if(response.status === 200){
     const jwtToken = (await response.json()).token;
+    console.log(decode(jwtToken));
     document.cookie = `usertoken=${jwtToken}`
   }
 

@@ -12,7 +12,8 @@ const LoginStateContext: React.Context<[LoginState, Function]> = createContext<
   {
     isLoggedIn: false,
     status: "loaded",
-  }, () => {}
+  },
+  () => {},
 ]);
 
 function App(): JSX.Element {
@@ -21,17 +22,18 @@ function App(): JSX.Element {
     status: "loaded",
   });
   useEffect(() => {
-    if(!loginState.isLoggedIn && loginState.status === "loading") {
+    if (!loginState.isLoggedIn) {
       if (checkLogin()) {
-        getUser();
-        setLoginState({
-          isLoggedIn: true,
-          user: {
-            id: 1,
-            firstName: "Omar",
-            lastName: "Attia",
-            email: "oma24131@gmail.com",
-          },
+        getUser().then((data) => {
+          setLoginState({
+            isLoggedIn: true,
+            user: {
+              id: data.id,
+              firstName: data.firstName,
+              lastName: data.lastName,
+              email: data.email,
+            },
+          });
         });
       }
     }
