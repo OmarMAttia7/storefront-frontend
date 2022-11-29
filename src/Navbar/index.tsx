@@ -5,7 +5,6 @@ function Navbar(): JSX.Element {
     <nav>
       <Link to="/">Home</Link>
       <Link to="/profile">Profile</Link>
-      <Link to="/products">Products</Link>
     </nav>
   );
 }

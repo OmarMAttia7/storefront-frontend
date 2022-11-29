@@ -1,0 +1,13 @@
+.profile-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 40vw;
+  font-size: larger;
+}
+
+.profile-list li {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
