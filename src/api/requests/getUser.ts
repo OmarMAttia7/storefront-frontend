@@ -4,14 +4,11 @@ import { Base64 } from "js-base64";
 
 async function getUser() {
   const token = getCookie("usertoken");
-  const decodedToken = Base64.decode(token);
-  const searchString = "\"user_id\"";
-  const idStringPos = decodedToken.indexOf(searchString);
-  const id = Number(decodedToken[idStringPos + searchString.length + 1])
+  const base64UserInfo = token.split(".")[1];
+  const decodedUserInfo = JSON.parse(Base64.decode(base64UserInfo));
+  const id = decodedUserInfo.user_id;
   const response = await fetch(`${api}/users/${id}`, {
-    headers: [
-      ["Authorization", `Bearer ${token}`]
-    ],
+    headers: [["Authorization", `Bearer ${token}`]],
   });
   const jsonData = await response.json();
 
@@ -19,7 +16,7 @@ async function getUser() {
     id: jsonData.id,
     firstName: jsonData.first_name,
     lastName: jsonData.last_name,
-    email: jsonData.email
+    email: jsonData.email,
   };
 }
 

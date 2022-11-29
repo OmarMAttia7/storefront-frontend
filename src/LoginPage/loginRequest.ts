@@ -20,7 +20,6 @@ export default async function login(userInfo: UserInfo): Promise<Response> {
 
   if(response.status === 200){
     const jwtToken = (await response.json()).token;
-    console.log(decode(jwtToken));
     document.cookie = `usertoken=${jwtToken}`
   }
 

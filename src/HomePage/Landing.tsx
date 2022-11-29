@@ -10,7 +10,7 @@ function Landing(): JSX.Element {
     logout();
     setLoginState({
       isLoggedIn: false,
-      status: "loading"
+      status: "loaded"
     });
   }
   return LoginState.isLoggedIn ? (
